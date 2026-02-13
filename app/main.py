@@ -3,7 +3,7 @@ class Distance:
         self.km = km
 
     def __str__(self) -> str:
-        return f"Distance: {self.km}: kilometers. "
+        return f"Distance: {self.km} kilometers. "
 
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
@@ -31,30 +31,40 @@ class Distance:
 
     def __truediv__(self, other: object) -> "Distance":
         if isinstance(other, (int, float)):
-            return Distance(self.km / other)
+            return Distance(round(self.km / other, 2))
         return NotImplemented
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
+        if isinstance(other, (int, float)):
+            return self.km == other
         return NotImplemented
 
     def __lt__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
+        if isinstance(other, (int, float)):
+            return self.km < other
         return NotImplemented
 
     def __le__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
+        if isinstance(other, (int, float)):
+            return self.km <= other
         return NotImplemented
 
     def __gt__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
+        if isinstance(other, (int, float)):
+            return self.km > other
         return NotImplemented
 
     def __ge__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
+        if isinstance(other, (int, float)):
+            return self.km >= other
         return NotImplemented
